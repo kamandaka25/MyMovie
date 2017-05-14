@@ -3,6 +3,7 @@ package id.sch.smktelkom_mlg.privateassignment.xirpl202.themoviedatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -15,6 +16,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import id.sch.smktelkom_mlg.privateassignment.xirpl202.themoviedatabase.fragment.NowFragment;
+import id.sch.smktelkom_mlg.privateassignment.xirpl202.themoviedatabase.fragment.SoonFragment;
+import id.sch.smktelkom_mlg.privateassignment.xirpl202.themoviedatabase.fragment.TopRatedFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("The Movie Database");
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -47,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -130,9 +138,18 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            if (position == 0) {
+                setTheme(R.style.AppTheme);
+                return new NowFragment();
+            } else if (position == 1) {
+                setTheme(R.style.AppTheme_Green);
+                return new SoonFragment();
+            } else if (position == 2) {
+                setTheme(R.style.AppTheme);
+                return new TopRatedFragment();
+            } else {
+                return PlaceholderFragment.newInstance(position + 1);
+            }
         }
 
         @Override
@@ -145,11 +162,11 @@ public class MainActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "SECTION 1";
+                    return "Now Playing";
                 case 1:
-                    return "SECTION 2";
+                    return "Coming Soon";
                 case 2:
-                    return "SECTION 3";
+                    return "Top Rated";
             }
             return null;
         }
