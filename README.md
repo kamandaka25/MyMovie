@@ -1,5 +1,5 @@
 Deskripsi:<br>
-aplikasi yang memungkinkan penampilan film dalam suatu bioskop. baik film yang sedang tayang, yang akan tayang, maupun yang sudah tayang<br>
+aplikasi yang memungkinkan penampilan film dalam suatu bioskop. baik film yang sedang tayang maupun yang akan tayang<br>
 Nama Aplikasi : MyMovie <br>
 Nama Siswa : Zhakirasakti desta kamandaka<br>
 Kelas, No : Xir2, 36<br>
